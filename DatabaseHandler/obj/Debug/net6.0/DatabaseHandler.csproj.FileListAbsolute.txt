@@ -1,0 +1,12 @@
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\bin\Debug\net6.0\DatabaseHandler.deps.json
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\bin\Debug\net6.0\DatabaseHandler.dll
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\bin\Debug\net6.0\DatabaseHandler.pdb
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.csproj.AssemblyReference.cache
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.AssemblyInfoInputs.cache
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.AssemblyInfo.cs
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.csproj.CoreCompileInputs.cache
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.dll
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\refint\DatabaseHandler.dll
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.pdb
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\ref\DatabaseHandler.dll
