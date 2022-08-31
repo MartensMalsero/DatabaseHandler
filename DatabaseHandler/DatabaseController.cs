@@ -376,5 +376,85 @@ namespace DatabaseHandler
             }
         }
         #endregion
+
+        #region MaxIDSQL
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tablename"></param>
+        /// <param name="rowname"></param>
+        /// <param name="optional_where"></param>
+        /// <param name="optional_where_columns"></param>
+        /// <param name="optional_where_values"></param>
+        /// <returns></returns>
+        public static Int64 MAX_ID_SQL(string tablename, string rowname, bool optional_where = false, object[] optional_where_columns = null, object[] optional_where_values = null)
+        {
+            Int64 res = 0;
+
+            if (ConnectionString == null || ConnectionString == "")
+            {
+                Console.WriteLine("ERROR! No connection data set!");
+                return res;
+            }
+
+            using (Connection = new MySqlConnection(ConnectionString))
+            {
+                Connection.Open();
+                MySqlCommand cmd = Connection.CreateCommand();
+
+                cmd.CommandText = "SELECT ";
+
+                if (!optional_where)
+                {
+                    cmd.CommandText += $"MAX({rowname}) FROM {tablename}";
+                }
+                else
+                {
+                    cmd.CommandText += $"MAX({rowname}) FROM {tablename} WHERE ";
+
+                    if (optional_where_columns.Length == optional_where_values.Length)
+                    {
+                        for (int i = 1; i <= optional_where_columns.Length; i++)
+                        {
+                            if (!(i == optional_where_columns.Length))
+                            {
+                                cmd.CommandText += optional_where_columns[i - 1] + "=@val" + (i - 1) + " AND ";
+                            }
+                            else
+                            {
+                                cmd.CommandText += optional_where_columns[i - 1] + "=@val" + (i - 1) + "";
+                            }
+                        }
+
+                        for (int i = 1; i <= optional_where_values.Length; i++)
+                        {
+                            cmd.Parameters.AddWithValue("@val" + (i - 1), optional_where_values[i - 1]);
+                        }
+                    }
+                }
+
+                if (_DEBUG)
+                {
+                    Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
+                    Console.WriteLine(cmd.ExecuteScalar().ToString());
+                }
+
+                if (!Convert.IsDBNull(cmd.ExecuteScalar()))
+                {
+                    if (_DEBUG) Console.WriteLine(Convert.ToInt64(cmd.ExecuteScalar()).ToString());
+                    res = Convert.ToInt64(cmd.ExecuteScalar());
+                    Connection.Close();
+                }
+
+                else
+                {
+                    if (_DEBUG) Console.WriteLine(Convert.ToInt64(0).ToString());
+                    Connection.Close();
+                }
+            }
+
+            return res;
+        }
+        #endregion
     }
 }
