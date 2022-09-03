@@ -5,40 +5,42 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    types: [ closed ]
 
 jobs:
 
-  #release:
-  #  name: Release Project
-  #  runs-on: windows-latest
-  #  needs: build
-  #  steps:
-  #    - name: Download content
-  #      uses: actions/download-artifact@v3
-  #      with:
-  #        name: DatabaseHandler
-  #        
-  #    - name: Create GitHub Release
-  #      id: create-new-release
-  #      uses: actions/create-release@v1
-  #      env:
-  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #      with:
-  #        tag_name: v${{ github.run_number }}
-  #        release_name: Release V${{ github.run_number }}
-  #        
-  #    - name: Upload assets
-  #      uses: actions/upload-release-asset@v1
-  #      env:
-  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #      with:
-  #        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-  #        asset_path: ./DatabaseHandler.zip
-  #        asset_name: DatabaseHandler-v${{ github.run_number }}.zip
-  #        asset_content_type: application/zip
+  release:
+    name: Release Project
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Download content
+        uses: actions/download-artifact@v3
+        with:
+          name: DatabaseHandler
+          
+      - name: Create GitHub Release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release V${{ github.run_number }}
+          
+      - name: Upload assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./DatabaseHandler.zip
+          asset_name: DatabaseHandler-v${{ github.run_number }}.zip
+          asset_content_type: application/zip
           
   build:
     name: Build Project
+    if: github.event.pull_request.merged == true
     runs-on: windows-latest
     env:
       working-directory: ./DatabaseHandler
@@ -64,7 +66,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'DatabaseHandler.zip'
-        path: '${{ github.workspace }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll' #${{ GITHUB_WORKSPACE }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml
+        path: '${{ github.workspace }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll ${{ github.workspace }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml'
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
