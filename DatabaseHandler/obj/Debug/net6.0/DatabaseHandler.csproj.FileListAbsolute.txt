@@ -10,3 +10,5 @@ C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Deb
 C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\refint\DatabaseHandler.dll
 C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.pdb
 C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\ref\DatabaseHandler.dll
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\bin\Debug\net6.0\DatabaseHandler.xml
+C:\Users\Philipp\Nextcloud\Code Projekte\DatabaseHandler\DatabaseHandler\obj\Debug\net6.0\DatabaseHandler.xml

@@ -3,6 +3,9 @@ using System.Data;
 
 namespace DatabaseHandler
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DatabaseController
     {
         #region Variables
@@ -20,7 +23,13 @@ namespace DatabaseHandler
 
         #region Constructor DatabaseController
         /// <summary>
-        /// Constructor
+        ///     <example>
+        ///         <para>You can set debug to true or false to get console messages or not</para>
+        ///         <para>Initialize as follows</para>
+        ///         <code>
+        ///             _ = new DatabaseController(<paramref name="Host"/>, <paramref name="Port"/>, <paramref name="DB"/>, <paramref name="Username"/>, <paramref name="Password"/>, <paramref name="DEBUG"/>)
+        ///         </code>
+        ///     </example>
         /// </summary>
         /// <param name="Host"></param>
         /// <param name="Port"></param>
@@ -42,16 +51,37 @@ namespace DatabaseHandler
 
         #region SelectSQL
         /// <summary>
-        /// 
+        ///     <example>
+        ///         <para>Select the <paramref name="columns"/> in the given <paramref name="tablename"/></para>
+        ///         <para>If you want to select everything in <paramref name="tablename"/>, e.g. in table "users"</para>
+        ///         <code>
+        ///             DatabaseController.SelectSQL("users", new object[] {"*"})
+        ///         </code>
+        ///     </example>
         /// </summary>
+        /// 
         /// <param name="tablename"></param>
         /// <param name="columns"></param>
         /// <param name="optional_where"></param>
         /// <param name="optional_where_columns"></param>
         /// <param name="optional_where_values"></param>
         /// <param name="optional_limit"></param>
+        ///
         /// <returns>
-        /// DataTable with all columns and values
+        ///     <para>DataTable with all <paramref name="columns"/> and values</para>
+        ///     <example>
+        ///         You have to catch the result as a DataTable, for example
+        ///         <code>
+        ///             using DataTable dt = DatabaseController.SelectSQL("users", new object[] {"*"});
+        ///             if (dt.Rows.Count > 0)
+        ///             {
+        ///                 foreach (DataRow dr in dt.Rows)
+        ///                 {
+        ///                     Console.WriteLine(dr["ID"]);
+        ///                 }
+        ///             }
+        ///         </code>
+        ///     </example>
         /// </returns>
         public static DataTable SelectSQL(string tablename, object[] columns, bool optional_where = false, object[]? optional_where_columns = null, object[]? optional_where_values = null, int optional_limit = 0)
         {
@@ -143,7 +173,7 @@ namespace DatabaseHandler
 
         #region UpsertSQL
         /// <summary>
-        /// 
+        ///     To update the <paramref name="columns"/> with <paramref name="values"/> in <paramref name="tablename"/>
         /// </summary>
         /// <param name="tablename"></param>
         /// <param name="columns"></param>
@@ -151,7 +181,15 @@ namespace DatabaseHandler
         /// <param name="ID"></param>
         /// <param name="id_column_name"></param>
         /// <returns>
-        /// Boolean
+        ///     <example>
+        ///         <code>
+        ///             bool upsert = DatabaseController.UpsertSQL(...)
+        ///             
+        ///             if (upsert) {
+        ///                 ...
+        ///             }
+        ///         </code>
+        ///     </example>
         /// </returns>
         public static bool UpsertSQL(string tablename, object[] columns, object[] values, int ID, string id_column_name = "id")
         {
@@ -250,13 +288,21 @@ namespace DatabaseHandler
 
         #region DeleteSQL
         /// <summary>
-        /// 
+        ///     To delete entries or lines
         /// </summary>
         /// <param name="tablename"></param>
         /// <param name="columns"></param>
         /// <param name="values"></param>
         /// <returns>
-        /// Boolean
+        ///     <example>
+        ///         <code>
+        ///             bool delete = DatabaseController.DeleteSQL(...)
+        ///             
+        ///             if (delete) {
+        ///                 ...
+        ///             }
+        ///         </code>
+        ///     </example>
         /// </returns>
         public static bool DeleteSQL(string tablename, object[] columns, object[] values)
         {
@@ -312,14 +358,18 @@ namespace DatabaseHandler
 
         #region CountSQL
         /// <summary>
-        /// 
+        ///     Counting the specified entries in the <paramref name="tablename"/>
         /// </summary>
         /// <param name="tablename"></param>
         /// <param name="optional_where"></param>
         /// <param name="optional_where_columns"></param>
         /// <param name="optional_where_values"></param>
         /// <returns>
-        /// Int64
+        ///     <example>
+        ///         <code>
+        ///             Int64 count = DatabaseController.CountSQL(...)
+        ///         </code>
+        ///     </example>
         /// </returns>
         public static Int64 CountSQL(string tablename, bool optional_where = false, object[] optional_where_columns = null, object[] optional_where_values = null)
         {
@@ -379,14 +429,20 @@ namespace DatabaseHandler
 
         #region MaxIDSQL
         /// <summary>
-        /// 
+        ///     Get last entry in <paramref name="tablename"/> + 1
         /// </summary>
         /// <param name="tablename"></param>
         /// <param name="rowname"></param>
         /// <param name="optional_where"></param>
         /// <param name="optional_where_columns"></param>
         /// <param name="optional_where_values"></param>
-        /// <returns></returns>
+        /// <returns>
+        ///     <example>
+        ///         <code>
+        ///             Int64 MaxID = DatabaseController.Max_ID_SQL(...)
+        ///         </code>
+        ///     </example>
+        /// </returns>
         public static Int64 MAX_ID_SQL(string tablename, string rowname, bool optional_where = false, object[] optional_where_columns = null, object[] optional_where_values = null)
         {
             Int64 res = 0;

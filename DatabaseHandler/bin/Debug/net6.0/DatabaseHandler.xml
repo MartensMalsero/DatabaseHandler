@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DatabaseHandler</name>
+    </assembly>
+    <members>
+        <member name="T:DatabaseHandler.DatabaseController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+                <example>
+                    <para>You can set debug to true or false to get console messages or not</para>
+                    <para>Initialize as follows</para>
+                    <code>
+                        _ = new DatabaseController(<paramref name="Host"/>, <paramref name="Port"/>, <paramref name="DB"/>, <paramref name="Username"/>, <paramref name="Password"/>, <paramref name="DEBUG"/>)
+                    </code>
+                </example>
+            </summary>
+            <param name="Host"></param>
+            <param name="Port"></param>
+            <param name="DB"></param>
+            <param name="Username"></param>
+            <param name="Password"></param>
+            <param name="DEBUG"></param>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.SelectSQL(System.String,System.Object[],System.Boolean,System.Object[],System.Object[],System.Int32)">
+             <summary>
+                 <example>
+                     <para>Select the <paramref name="columns"/> in the given <paramref name="tablename"/></para>
+                     <para>If you want to select everything in <paramref name="tablename"/>, e.g. in table "users"</para>
+                     <code>
+                         DatabaseController.SelectSQL("users", new object[] {"*"})
+                     </code>
+                 </example>
+             </summary>
+             
+             <param name="tablename"></param>
+             <param name="columns"></param>
+             <param name="optional_where"></param>
+             <param name="optional_where_columns"></param>
+             <param name="optional_where_values"></param>
+             <param name="optional_limit"></param>
+            
+             <returns>
+                 <para>DataTable with all <paramref name="columns"/> and values</para>
+                 <example>
+                     You have to catch the result as a DataTable, for example
+                     <code>
+                         using DataTable dt = DatabaseController.SelectSQL("users", new object[] {"*"});
+                         if (dt.Rows.Count > 0)
+                         {
+                             foreach (DataRow dr in dt.Rows)
+                             {
+                                 Console.WriteLine(dr["ID"]);
+                             }
+                         }
+                     </code>
+                 </example>
+             </returns>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.UpsertSQL(System.String,System.Object[],System.Object[],System.Int32,System.String)">
+            <summary>
+                To update the <paramref name="columns"/> with <paramref name="values"/> in <paramref name="tablename"/>
+            </summary>
+            <param name="tablename"></param>
+            <param name="columns"></param>
+            <param name="values"></param>
+            <param name="ID"></param>
+            <param name="id_column_name"></param>
+            <returns>
+                <example>
+                    <code>
+                        bool upsert = DatabaseController.UpsertSQL(...)
+                        
+                        if (upsert) {
+                            ...
+                        }
+                    </code>
+                </example>
+            </returns>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.DeleteSQL(System.String,System.Object[],System.Object[])">
+            <summary>
+                To delete entries or lines
+            </summary>
+            <param name="tablename"></param>
+            <param name="columns"></param>
+            <param name="values"></param>
+            <returns>
+                <example>
+                    <code>
+                        bool delete = DatabaseController.DeleteSQL(...)
+                        
+                        if (delete) {
+                            ...
+                        }
+                    </code>
+                </example>
+            </returns>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.CountSQL(System.String,System.Boolean,System.Object[],System.Object[])">
+            <summary>
+                Counting the specified entries in the <paramref name="tablename"/>
+            </summary>
+            <param name="tablename"></param>
+            <param name="optional_where"></param>
+            <param name="optional_where_columns"></param>
+            <param name="optional_where_values"></param>
+            <returns>
+                <example>
+                    <code>
+                        Int64 count = DatabaseController.CountSQL(...)
+                    </code>
+                </example>
+            </returns>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.MAX_ID_SQL(System.String,System.String,System.Boolean,System.Object[],System.Object[])">
+            <summary>
+                Get last entry in <paramref name="tablename"/> + 1
+            </summary>
+            <param name="tablename"></param>
+            <param name="rowname"></param>
+            <param name="optional_where"></param>
+            <param name="optional_where_columns"></param>
+            <param name="optional_where_values"></param>
+            <returns>
+                <example>
+                    <code>
+                        Int64 MaxID = DatabaseController.Max_ID_SQL(...)
+                    </code>
+                </example>
+            </returns>
+        </member>
+    </members>
+</doc>
