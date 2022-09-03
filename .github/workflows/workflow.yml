@@ -62,7 +62,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'DatabaseHandler.zip'
-        path: '/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll' #${{ GITHUB_WORKSPACE }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml
+        directory: ${{ GITHUB_WORKSPACE }}
+        path: './DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll' #${{ GITHUB_WORKSPACE }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
