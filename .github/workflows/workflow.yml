@@ -40,6 +40,8 @@ jobs:
   build:
     name: Build Project
     runs-on: windows-latest
+    env:
+      working-directory: ./DatabaseHandler
     steps:
     - uses: actions/checkout@v3
     
@@ -57,24 +59,13 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal ./DatabaseHandler/DatabaseHandler.csproj
       
-    - name: Dir?
-      run: 
-        echo "First dir"
-        dir
-        echo ""
-        echo "Change dir"
-        cd $GITHUB_WORKSPACE
-        echo ""
-        echo "Second dir"
-        dir
-      
     - name: Archieve DatabaseHandler
       uses: TheDoctor0/zip-release@0.6.2
       with:
         type: 'zip'
         filename: 'DatabaseHandler.zip'
         directory: $GITHUB_WORKSPACE
-        path: './DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll' #${{ GITHUB_WORKSPACE }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml
+        path: './bin/Debug/net6.0/DatabaseHandler.dll' #${{ GITHUB_WORKSPACE }}/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
