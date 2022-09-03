@@ -40,7 +40,7 @@ jobs:
           
   build:
     name: Build Project
-    if: github.event.pull_request.merged == true
+    if: ${{ (github.event.pull_request.merged == true) || github.event_name == 'push' }}
     runs-on: windows-latest
     env:
       working-directory: ./DatabaseHandler
