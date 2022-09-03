@@ -48,21 +48,21 @@ jobs:
       with:
         dotnet-version: 6.0.x
         
-    #- name: Restore dependencies
-    #  run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore ./DatabaseHandler/DatabaseHandler.csproj
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ./DatabaseHandler/DatabaseHandler.csproj
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ./DatabaseHandler/DatabaseHandler.csproj
       
     - name: Archieve DatabaseHandler
       uses: TheDoctor0/zip-release@0.6.2
       with:
         type: 'zip'
         filename: 'DatabaseHandler.zip'
-        path: '/DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll /DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml'
+        path: './DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.dll ./DatabaseHandler/bin/Debug/net6.0/DatabaseHandler.xml'
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
