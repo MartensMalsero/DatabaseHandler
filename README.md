@@ -13,14 +13,14 @@ _ = new DatabaseController(Host, Port, DB, Username, Password, Debug);
 ```
 // Then you can call the functions as follows
 
-DatabaseController.SelectSQL(...)
-DatabaseController.UpsertSQL(...)
+DatabaseController.SelectSql(...)
+DatabaseController.UpsertSql(...)
 ```
 
 ```
-// For DatabaseController.SelectSQL(...) you have to catch the result as a DataTable, for example
+// For DatabaseController.SelectSql(...) you have to catch the result as a DataTable, for example
 
-using DataTable dt = DatabaseController.SelectSQL("test_table", new object[] {"id"});
+using var dt = DatabaseController.SelectSql("test_table", new object[] {"id"});
 if (dt.Rows.Count > 0)
 {
     foreach (DataRow dr in dt.Rows)
