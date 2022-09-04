@@ -4,9 +4,37 @@
         <name>DatabaseHandler</name>
     </assembly>
     <members>
+        <member name="T:DatabaseHandler.DatabaseBuilder">
+            <summary>
+                Create databases and database tables
+            </summary>
+        </member>
+        <member name="T:DatabaseHandler.DatabaseBuilder.Functions">
+            <summary>
+                Functions to call
+            </summary>
+        </member>
+        <member name="F:DatabaseHandler.DatabaseBuilder.Functions.CreateDatabase">
+            <summary>
+                Call database creation function
+            </summary>
+        </member>
+        <member name="F:DatabaseHandler.DatabaseBuilder.Functions.CreateTable">
+            <summary>
+                Call database table creation function
+            </summary>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseBuilder.#ctor(System.Boolean,DatabaseHandler.DatabaseBuilder.Functions,System.String)">
+            <summary>
+                DatabaseBuilder constructor - call to execute DatabaseBuilder.Functions with the nessesary sql
+            </summary>
+            <param name="debug"></param>
+            <param name="functions"></param>
+            <param name="sql"></param>
+        </member>
         <member name="T:DatabaseHandler.DatabaseController">
             <summary>
-            
+                Controller for using the database
             </summary>
         </member>
         <member name="M:DatabaseHandler.DatabaseController.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
@@ -15,34 +43,34 @@
                     <para>You can set debug to true or false to get console messages or not</para>
                     <para>Initialize as follows</para>
                     <code>
-                        _ = new DatabaseController(<paramref name="Host"/>, <paramref name="Port"/>, <paramref name="DB"/>, <paramref name="Username"/>, <paramref name="Password"/>, <paramref name="DEBUG"/>)
+                        _ = new DatabaseController(<paramref name="host"/>, <paramref name="port"/>, <paramref name="db"/>, <paramref name="username"/>, <paramref name="password"/>, <paramref name="debug"/>)
                     </code>
                 </example>
             </summary>
-            <param name="Host"></param>
-            <param name="Port"></param>
-            <param name="DB"></param>
-            <param name="Username"></param>
-            <param name="Password"></param>
-            <param name="DEBUG"></param>
+            <param name="host"></param>
+            <param name="port"></param>
+            <param name="db"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="debug"></param>
         </member>
-        <member name="M:DatabaseHandler.DatabaseController.SelectSQL(System.String,System.Object[],System.Boolean,System.Object[],System.Object[],System.Int32)">
+        <member name="M:DatabaseHandler.DatabaseController.SelectSql(System.String,System.Object[],System.Boolean,System.Object[],System.Object[],System.Int32)">
              <summary>
                  <example>
-                     <para>Select the <paramref name="columns"/> in the given <paramref name="tablename"/></para>
-                     <para>If you want to select everything in <paramref name="tablename"/>, e.g. in table "users"</para>
+                     <para>Select the <paramref name="columns"/> in the given <paramref name="tableName"/></para>
+                     <para>If you want to select everything in <paramref name="tableName"/>, e.g. in table "users"</para>
                      <code>
                          DatabaseController.SelectSQL("users", new object[] {"*"})
                      </code>
                  </example>
              </summary>
              
-             <param name="tablename"></param>
+             <param name="tableName"></param>
              <param name="columns"></param>
-             <param name="optional_where"></param>
-             <param name="optional_where_columns"></param>
-             <param name="optional_where_values"></param>
-             <param name="optional_limit"></param>
+             <param name="optionalWhere"></param>
+             <param name="optionalWhereColumns"></param>
+             <param name="optionalWhereValues"></param>
+             <param name="optionalLimit"></param>
             
              <returns>
                  <para>DataTable with all <paramref name="columns"/> and values</para>
@@ -61,15 +89,15 @@
                  </example>
              </returns>
         </member>
-        <member name="M:DatabaseHandler.DatabaseController.UpsertSQL(System.String,System.Object[],System.Object[],System.Int32,System.String)">
+        <member name="M:DatabaseHandler.DatabaseController.UpsertSql(System.String,System.Object[],System.Object[],System.Int32,System.String)">
             <summary>
-                To update the <paramref name="columns"/> with <paramref name="values"/> in <paramref name="tablename"/>
+                To update the <paramref name="columns"/> with <paramref name="values"/> in <paramref name="tableName"/>
             </summary>
-            <param name="tablename"></param>
+            <param name="tableName"></param>
             <param name="columns"></param>
             <param name="values"></param>
-            <param name="ID"></param>
-            <param name="id_column_name"></param>
+            <param name="id"></param>
+            <param name="idColumnName"></param>
             <returns>
                 <example>
                     <code>
@@ -82,11 +110,11 @@
                 </example>
             </returns>
         </member>
-        <member name="M:DatabaseHandler.DatabaseController.DeleteSQL(System.String,System.Object[],System.Object[])">
+        <member name="M:DatabaseHandler.DatabaseController.DeleteSql(System.String,System.Object[],System.Object[])">
             <summary>
                 To delete entries or lines
             </summary>
-            <param name="tablename"></param>
+            <param name="tableName"></param>
             <param name="columns"></param>
             <param name="values"></param>
             <returns>
@@ -101,14 +129,14 @@
                 </example>
             </returns>
         </member>
-        <member name="M:DatabaseHandler.DatabaseController.CountSQL(System.String,System.Boolean,System.Object[],System.Object[])">
+        <member name="M:DatabaseHandler.DatabaseController.CountSql(System.String,System.Boolean,System.Object[],System.Object[])">
             <summary>
-                Counting the specified entries in the <paramref name="tablename"/>
+                Counting the specified entries in the <paramref name="tableName"/>
             </summary>
-            <param name="tablename"></param>
-            <param name="optional_where"></param>
-            <param name="optional_where_columns"></param>
-            <param name="optional_where_values"></param>
+            <param name="tableName"></param>
+            <param name="optionalWhere"></param>
+            <param name="optionalWhereColumns"></param>
+            <param name="optionalWhereValues"></param>
             <returns>
                 <example>
                     <code>
@@ -119,13 +147,13 @@
         </member>
         <member name="M:DatabaseHandler.DatabaseController.MAX_ID_SQL(System.String,System.String,System.Boolean,System.Object[],System.Object[])">
             <summary>
-                Get last entry in <paramref name="tablename"/> + 1
+                Get last entry in <paramref name="tableName"/> + 1
             </summary>
-            <param name="tablename"></param>
-            <param name="rowname"></param>
-            <param name="optional_where"></param>
-            <param name="optional_where_columns"></param>
-            <param name="optional_where_values"></param>
+            <param name="tableName"></param>
+            <param name="rowName"></param>
+            <param name="optionalWhere"></param>
+            <param name="optionalWhereColumns"></param>
+            <param name="optionalWhereValues"></param>
             <returns>
                 <example>
                     <code>
