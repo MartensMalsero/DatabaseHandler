@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "DatabaseHandler/1.0.0": {
         "dependencies": {
-          "MySql.Data": "8.0.30"
+          "MySql.Data": "8.0.30",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "DatabaseHandler.dll": {}
@@ -99,6 +100,14 @@
           "lib/net6.0/ZstdNet.dll": {
             "assemblyVersion": "1.4.5.0",
             "fileVersion": "1.4.5.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         }
       },
@@ -265,6 +274,13 @@
       "sha512": "sha512-SRoxG9ASRQrqL/JKU9KxaWfkmWtBuw5rA7d9G34Z1w4Aq5YwvxIjuGDOkUSk/H6VOmlZ/wywgBSX9S6btbUAYg==",
       "path": "mysql.data/8.0.30",
       "hashPath": "mysql.data.8.0.30.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.9.0": {
       "type": "package",
