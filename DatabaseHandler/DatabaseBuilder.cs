@@ -37,8 +37,9 @@ namespace DatabaseHandler
         /// </summary>
         /// <param name="debug"></param>
         /// <param name="functions"></param>
+        /// <param name="name">Database oder table name</param>
         /// <param name="sql"></param>
-        public DatabaseBuilder(bool debug, Functions functions, string sql)
+        public DatabaseBuilder(bool debug, Functions functions, string name, string sql)
         {
             _connection = null;
             ConnectionString = DatabaseController.ConnectionStringShare();
@@ -48,16 +49,19 @@ namespace DatabaseHandler
             switch (functions)
             {
                 case Functions.CreateDatabase:
-                    CreateDatabase();
+                    CreateDatabase(name);
                     break;
                 
                 case Functions.CreateTable:
-                    CreateTable();
+                    CreateTable(name);
                     break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(functions), functions, null);
             }
         }
 
-        private static void CreateDatabase()
+        private static void CreateDatabase(string name)
         {
             if (!Utils.CheckConnectionString(ConnectionString)) return;
             if (!Utils.CheckSqlString(Sql)) return;
@@ -67,33 +71,63 @@ namespace DatabaseHandler
                 _connection.Open();
                 MySqlCommand cmd = _connection.CreateCommand();
 
+                string countDatabase = @$"
+                    SELECT COUNT(*)
+                    FROM INFORMATION_SCHEMA.SCHEMATA
+                    WHERE SCHEMA_NAME = '{name}'";
+
+                cmd.CommandText = countDatabase;
+                
+                if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
+                if ((long) cmd.ExecuteScalar() > 0) return;
+                
                 cmd.CommandText = Sql;
                 
                 if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
-                if ((long) cmd.ExecuteScalar() <= 0) return;
+                cmd.ExecuteNonQuery();
                 
-                _connection.Close();
+                cmd.CommandText = countDatabase;
+                    
+                if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
+                if ((long) cmd.ExecuteScalar() <= 0) throw new Exception();
+                    
                 Console.WriteLine("Database created!");
+                _connection.Close();
             }
         }
 
-        private static void CreateTable()
+        private static void CreateTable(string name)
         {
             if (!Utils.CheckConnectionString(ConnectionString)) return;
             if (!Utils.CheckSqlString(Sql)) return;
-            
+
             using (_connection = new MySqlConnection(ConnectionString))
             {
                 _connection.Open();
                 MySqlCommand cmd = _connection.CreateCommand();
 
+                string countTable = @$"
+                    SELECT COUNT(*)
+                    FROM INFORMATION_SCHEMA.TABLES
+                    WHERE (TABLE_NAME = '{name}')";
+
+                cmd.CommandText = countTable;
+                
+                if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
+                if ((long) cmd.ExecuteScalar() > 0) return;
+                
                 cmd.CommandText = Sql;
                 
                 if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
-                if ((long) cmd.ExecuteScalar() <= 0) return;
-                
-                _connection.Close();
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = countTable;
+                    
+                if (Debug) Console.WriteLine("CMD:COMMANDTEXT -> " + cmd.CommandText);
+                if ((long) cmd.ExecuteScalar() <= 0) throw new Exception();
+                    
                 Console.WriteLine("Database table created!");
+                _connection.Close();
             }
         }
     }

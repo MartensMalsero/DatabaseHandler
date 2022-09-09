@@ -9,12 +9,21 @@ namespace DatabaseHandler
     /// </summary>
     public class DatabaseController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static DatabaseController CreateInstance()
+        {
+            return new DatabaseController("localhost", "3306", "", "root", "", false);
+        }
+        
         #region Variables
-        private string? Host { get; }
-        private string? Port { get; }
-        private string? Db { get; }
-        private string? Username { get; }
-        private string? Password { get; }
+        private string Host { get; }
+        private string Port { get; }
+        private string Db { get; }
+        private string Username { get; }
+        private string Password { get; }
 
 
         private static MySqlConnection? _connection;
@@ -40,14 +49,15 @@ namespace DatabaseHandler
         /// <param name="debug"></param>
         public DatabaseController(string host, string port, string db, string username, string password, bool debug)
         {
-            this.Host = host;
-            this.Port = port;
-            this.Db = db;
-            this.Username = username;
-            this.Password = password;
+            Host = host;
+            Port = port;
+            Db = db;
+            Username = username;
+            Password = password;
             Debug = debug;
-            ConnectionString = $"SERVER={this.Host}; PORT={this.Port}; DATABASE={this.Db}; UID={this.Username}; PASSWORD={this.Password}";
+            ConnectionString = $"SERVER={Host}; PORT={Port}; DATABASE={Db}; UID={Username}; PASSWORD={Password}";
         }
+
         #endregion
 
         internal static string? ConnectionStringShare()
