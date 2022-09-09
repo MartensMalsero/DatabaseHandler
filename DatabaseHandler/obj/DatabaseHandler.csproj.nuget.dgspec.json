@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Philipp\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj": {}
+    "F:\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Philipp\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj": {
+    "F:\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Philipp\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj",
+        "projectUniqueName": "F:\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj",
         "projectName": "DatabaseHandler",
-        "projectPath": "C:\\Users\\Philipp\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj",
+        "projectPath": "F:\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\DatabaseHandler.csproj",
         "packagesPath": "C:\\Users\\Philipp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Philipp\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\obj\\",
+        "outputPath": "F:\\Nextcloud\\Code Projekte\\DatabaseHandler\\DatabaseHandler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

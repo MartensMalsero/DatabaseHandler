@@ -6,7 +6,7 @@
     <members>
         <member name="T:DatabaseHandler.DatabaseBuilder">
             <summary>
-                Create databases and database tables
+                Creating databases and database tables
             </summary>
         </member>
         <member name="T:DatabaseHandler.DatabaseBuilder.Functions">
@@ -16,26 +16,33 @@
         </member>
         <member name="F:DatabaseHandler.DatabaseBuilder.Functions.CreateDatabase">
             <summary>
-                Call database creation function
+                Call the function to create the database
             </summary>
         </member>
         <member name="F:DatabaseHandler.DatabaseBuilder.Functions.CreateTable">
             <summary>
-                Call database table creation function
+                Call the function to create database tables
             </summary>
         </member>
-        <member name="M:DatabaseHandler.DatabaseBuilder.#ctor(System.Boolean,DatabaseHandler.DatabaseBuilder.Functions,System.String)">
+        <member name="M:DatabaseHandler.DatabaseBuilder.#ctor(System.Boolean,DatabaseHandler.DatabaseBuilder.Functions,System.String,System.String)">
             <summary>
-                DatabaseBuilder constructor - call to execute DatabaseBuilder.Functions with the nessesary sql
+                DatabaseBuilder constructor - call to execute DatabaseBuilder.Functions with the necessary SQL
             </summary>
             <param name="debug"></param>
             <param name="functions"></param>
+            <param name="name">Database oder table name</param>
             <param name="sql"></param>
         </member>
         <member name="T:DatabaseHandler.DatabaseController">
             <summary>
                 Controller for using the database
             </summary>
+        </member>
+        <member name="M:DatabaseHandler.DatabaseController.CreateInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:DatabaseHandler.DatabaseController.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
             <summary>
