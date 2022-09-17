@@ -221,7 +221,7 @@ namespace DatabaseHandler
                 if (columns.Length != values.Length) return res;
                 for (var i = 1; i <= columns.Length; i++)
                 {
-                    if (i == columns.Length)
+                    if (i != columns.Length)
                     {
                         cmd.CommandText += columns[i - 1] + "=@val" + (i - 1) + ", ";
                     }
@@ -400,7 +400,7 @@ namespace DatabaseHandler
                     {
                         for (var i = 1; i <= optionalWhereColumns.Length; i++)
                         {
-                            if (i == optionalWhereColumns.Length)
+                            if (i != optionalWhereColumns.Length)
                             {
                                 cmd.CommandText += optionalWhereColumns[i - 1] + "=@val" + (i - 1) + " AND ";
                             }
